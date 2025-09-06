@@ -1,0 +1,11 @@
+{
+  "name": "@lighthouse/worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo worker dev",
+    "build": "echo worker build",
+    "lint": "echo worker lint",
+    "test": "echo worker test"
+  }
+}
