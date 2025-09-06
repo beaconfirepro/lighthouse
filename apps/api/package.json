@@ -1,0 +1,11 @@
+{
+  "name": "@lighthouse/api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo api dev",
+    "build": "echo api build",
+    "lint": "echo api lint",
+    "test": "echo api test"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@lighthouse/shared",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "echo shared dev",
+    "build": "echo shared build",
+    "lint": "echo shared lint",
+    "test": "echo shared test"
+  }
+}

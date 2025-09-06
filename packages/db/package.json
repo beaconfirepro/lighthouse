@@ -1,0 +1,11 @@
+{
+  "name": "@lighthouse/db",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo db dev",
+    "build": "echo db build",
+    "lint": "echo db lint",
+    "test": "echo db test"
+  }
+}

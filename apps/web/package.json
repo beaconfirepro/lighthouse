@@ -1,0 +1,11 @@
+{
+  "name": "@lighthouse/web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo web dev",
+    "build": "echo web build",
+    "lint": "echo web lint",
+    "test": "echo web test"
+  }
+}
