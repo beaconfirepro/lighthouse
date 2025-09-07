@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import knex, { Knex } from 'knex';
 
 let db: Knex | null = null;
