@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": false
+  },
+  "include": ["knexfile.ts", "src/**/*.ts", "migrations/**/*.ts", "seeds/**/*.ts"]
+}
