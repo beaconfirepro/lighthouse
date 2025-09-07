@@ -6,7 +6,19 @@ let db: Knex | null = null;
 
 export function getDb(): Knex {
   if (!db) {
-    db = knex(config);
+    if (process.env.DB_HOST) {
+      db = knex({
+        client: 'mssql',
+        connection: {
+          server: process.env.DB_HOST,
+          user: process.env.DB_USER,
+          password: process.env.DB_PASSWORD,
+          database: process.env.DB_NAME,
+        },
+      });
+    } else {
+      db = knex(config);
+    }
   }
   return db;
 }
