@@ -16,7 +16,10 @@
     "test": "turbo run test",
     "format": "prettier -w .",
     "verify:bootstrap": "node scripts/verify_task1.mjs",
-    "verify:env": "node scripts/verify_env.mjs"
+    "verify:env": "node scripts/verify_env.mjs",
+    "db:migrate": "node node_modules/knex/bin/cli.js --knexfile packages/db/knexfile.cjs migrate:latest",
+    "db:seed": "node node_modules/knex/bin/cli.js --knexfile packages/db/knexfile.cjs seed:run",
+    "verify:db": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"CommonJS\"}' node -r ts-node/register packages/db/src/verify.ts"
   },
   "devDependencies": {
     "eslint": "^9.9.0",
@@ -27,4 +30,3 @@
     "typescript": "^5.5.4"
   }
 }
-
