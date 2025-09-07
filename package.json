@@ -15,7 +15,8 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "format": "prettier -w .",
-    "verify:bootstrap": "node scripts/verify_task1.mjs"
+    "verify:bootstrap": "node scripts/verify_task1.mjs",
+    "verify:env": "node scripts/verify_env.mjs"
   },
   "devDependencies": {
     "eslint": "^9.9.0",
@@ -26,3 +27,4 @@
     "typescript": "^5.5.4"
   }
 }
+
