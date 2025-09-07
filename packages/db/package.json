@@ -1,11 +1,23 @@
 {
   "name": "@lighthouse/db",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "echo db dev",
-    "build": "echo db build",
-    "lint": "echo db lint",
-    "test": "echo db test"
+    "db:migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "db:rollback": "knex --knexfile knexfile.ts migrate:rollback",
+    "db:seed": "knex --knexfile knexfile.ts seed:run",
+    "build": "echo \"no build for db package\"",
+    "lint": "echo \"lint db\""
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "knex": "^3.1.0",
+    "mssql": "^10.0.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }
