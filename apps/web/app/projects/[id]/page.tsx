@@ -1,15 +1,34 @@
 'use client';
 import { useEffect, useState } from 'react';
+import type { ProjectDetail } from '@shared';
 
-export default function ProjectDetail({ params }: any) {
+interface PageProps {
+  params: { id: string };
+}
+
+export default function ProjectDetail({ params }: PageProps) {
   const id = Number(params.id);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<ProjectDetail | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
-    fetch(`/projects/${id}/overview`)
-      .then((r) => r.json())
-      .then(setData);
+    async function load() {
+      try {
+        const res = await fetch(`/projects/${id}/overview`);
+        if (!res.ok) throw new Error('Failed to fetch project');
+        const json: ProjectDetail = await res.json();
+        setData(json);
+      } catch (err) {
+        setError('Failed to load project');
+        console.error(err);
+      }
+    }
+    load();
   }, [id]);
+
+  if (error) return <div className="p-6">{error}</div>;
   if (!data) return <div className="p-6">Loading…</div>;
+
   return (
     <main className="max-w-5xl mx-auto p-6">
       <h1 className="text-xl font-semibold mb-4">Project #{id}</h1>
@@ -21,7 +40,7 @@ export default function ProjectDetail({ params }: any) {
           </tr>
         </thead>
         <tbody>
-          {(data.phases || []).map((p: any) => (
+          {(data.phases ?? []).map((p) => (
             <tr key={p.phase_id} className="border-t">
               <td className="py-2">{p.phase_name}</td>
               <td className="text-center">{p.status || '-'}</td>
