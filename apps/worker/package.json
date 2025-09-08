@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "func start",
     "build": "tsc -p tsconfig.json",
-    "lint": "echo lint worker"
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx"
   },
   "dependencies": {
     "@azure/functions": "^4.4.0",

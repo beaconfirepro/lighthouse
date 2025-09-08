@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "echo db dev",
     "build": "echo \"no build for db package\"",
-    "lint": "echo \"lint db\"",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx",
     "test": "echo db test",
     "db:migrate": "knex --knexfile knexfile.ts migrate:latest",
     "db:rollback": "knex --knexfile knexfile.ts migrate:rollback",

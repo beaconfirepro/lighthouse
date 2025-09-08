@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "echo shared dev",
     "build": "echo shared build",
-    "lint": "echo shared lint",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx",
     "test": "echo shared test"
   }
 }
