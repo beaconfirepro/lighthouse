@@ -1,3 +1,4 @@
+export * from './knex.js';
 import knex, { Knex } from 'knex';
 
 const config: Knex.Config = {
