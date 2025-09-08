@@ -12,6 +12,9 @@
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": ".",
-    "paths": { "@shared/*": ["packages/shared/*"] }
+    "paths": {
+      "@shared/*": ["packages/shared/src/*"],
+      "@lighthouse/db": ["packages/db/src/index.ts"]
+    }
   }
 }
