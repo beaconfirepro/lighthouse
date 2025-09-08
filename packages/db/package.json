@@ -4,26 +4,14 @@
   "private": true,
   "type": "module",
   "main": "src/index.ts",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "echo db dev",
-    "build": "tsc",
-    "lint": "echo db lint",
-    "test": "echo db test"
-  },
-  "dependencies": {
-    "knex": "^3.1.0",
-    "typescript": "^5.9.2"
-  },
-  "devDependencies": {
-    "@types/node": "^24.3.1"
+    "build": "echo \"no build for db package\"",
+    "lint": "echo \"lint db\"",
+    "test": "echo db test",
     "db:migrate": "knex --knexfile knexfile.ts migrate:latest",
     "db:rollback": "knex --knexfile knexfile.ts migrate:rollback",
-    "db:seed": "knex --knexfile knexfile.ts seed:run",
-    "build": "echo \"no build for db package\"",
-    "lint": "echo \"lint db\""
+    "db:seed": "knex --knexfile knexfile.ts seed:run"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -31,6 +19,7 @@
     "mssql": "^10.0.2"
   },
   "devDependencies": {
+    "@types/node": "^24.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
