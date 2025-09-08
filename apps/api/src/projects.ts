@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getDb, closeDb } from '../../packages/db/src/knex';
+import { getDb, closeDb } from '../../packages/db/src/knex.ts';
 
 const r = Router();
 
