@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getDb } from '@shared/../db/src/knex.js';
+import { getDb } from '@shared/../db/dist/knex.js';
 
 const r = Router();
 
