@@ -18,3 +18,7 @@
   - `SB_CONNECTION_STRING=<connection-string>`
   - `SB_QUEUE_VENDOR_UPSERT=vendor-upsert`
   - `SB_QUEUE_PROJECT_CREATE=project-create`
+
+## Monitoring
+
+- `az monitor metrics alert create --resource-group <resource-group> --name sb-queue-depth --scopes /subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.ServiceBus/namespaces/<namespace>/queues/<queue> --condition "max(ActiveMessages) > 100" --window-size 5m --evaluation-frequency 1m --action-group <action-group>`

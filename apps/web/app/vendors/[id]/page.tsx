@@ -1,16 +1,22 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-export default function VendorDetail({ params }: any) {
+interface Vendor {
+  vendor_name?: string;
+  vendor_type?: string;
+  active?: boolean;
+}
+
+export default function VendorDetail({ params }: { params: { id: string } }) {
   const id = Number(params.id);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Vendor | null>(null);
   useEffect(() => {
     fetch(`/vendors/${id}`)
       .then((r) => r.json())
-      .then(setData);
+      .then((d: Vendor) => setData(d));
   }, [id]);
   if (!data) return <div className="p-6">Loading…</div>;
-  async function save(e: any) {
+  async function save(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await fetch(`/vendors/${id}`, {
       method: 'PUT',
