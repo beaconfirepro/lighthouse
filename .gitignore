@@ -16,3 +16,8 @@ coverage
 # OS
 .DS_Store
 Thumbs.db
+
+# Turbo cache
+.turbo/
+apps/*/.turbo
+packages/*/.turbo
