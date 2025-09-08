@@ -16,7 +16,10 @@
     "test": "turbo run test",
     "format": "prettier -w .",
     "verify:bootstrap": "node scripts/verify_task1.mjs",
-    "verify:env": "node scripts/verify_env.mjs"
+    "verify:env": "node scripts/verify_env.mjs",
+    "db:migrate": "npm --prefix packages/db run db:migrate",
+    "db:rollback": "npm --prefix packages/db run db:rollback",
+    "db:seed": "npm --prefix packages/db run db:seed"
   },
   "devDependencies": {
     "eslint": "^9.9.0",
@@ -27,4 +30,3 @@
     "typescript": "^5.5.4"
   }
 }
-
