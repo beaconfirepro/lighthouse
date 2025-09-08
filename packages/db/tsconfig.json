@@ -2,7 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "declaration": false
+    "declaration": false,
+    "rootDir": "."
   },
-  "include": ["knexfile.ts", "src/**/*.ts", "migrations/**/*.ts", "seeds/**/*.ts"]
+  "include": ["src", "knexfile.ts", "migrations/**/*.ts", "seeds/**/*.ts"]
 }
