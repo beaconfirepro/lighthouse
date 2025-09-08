@@ -1,4 +1,13 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
+
+// Router for AHJ endpoints
+const router = Router();
+
+router.get('/', (_req: Request, res: Response) => {
+  res.json({ status: 'ok', feature: 'ahj' });
+});
+
+
 import { getDb } from '@shared/../db/src/knex.js';
 
 const r = Router();
@@ -48,4 +57,4 @@ r.put('/:id', async (req, res) => {
   res.json({ ok: true });
 });
 
-export default r;
+export default router;
