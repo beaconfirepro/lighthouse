@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import pino from 'pino';
-import { getDb, closeDb } from '@shared/../db/src/knex.js';
+import { getDb, closeDb } from '@db/knex.js';
 
 // Routers
 import ahj from './ahj.js';
