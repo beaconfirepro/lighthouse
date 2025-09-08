@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import { getDb, closeDb } from '../../packages/db/src/knex.ts';
+// before:
+// import { getDb, closeDb } from '../../packages/db/src/knex.ts';
+import { getDb, closeDb } from '@lighthouse/db';
 
 const r = Router();
 

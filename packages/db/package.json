@@ -5,17 +5,33 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20 <21"
+  },
   "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rimraf dist",
     "dev": "echo db dev",
-    "build": "tsc",
     "lint": "echo db lint",
-    "test": "echo db test"
+    "test": "echo db test",
+    "prepare": "npm run build"
   },
   "dependencies": {
-    "knex": "^3.1.0",
-    "typescript": "^5.9.2"
+    "knex": "^3.1.0"
   },
   "devDependencies": {
-    "@types/node": "^24.3.1"
+    "@types/node": "^24.3.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.2"
   }
 }

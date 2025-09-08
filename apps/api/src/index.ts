@@ -3,7 +3,9 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import pino from 'pino';
-import { getDb, closeDb } from '@shared/../db/src/knex.js';
+// before:
+// import { getDb, closeDb } from '@shared/../db/src/knex.js';
+import { getDb, closeDb } from "@lighthouse/db";
 
 // Routers
 import ahj from './ahj.js';

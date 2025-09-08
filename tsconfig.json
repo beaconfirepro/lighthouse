@@ -13,8 +13,9 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["packages/shared/src/*"],
-      "@lighthouse/db": ["packages/db/src/index.ts"]
+      "@shared/*": ["packages/shared/*"],
+      "@lighthouse/db": ["packages/db/src"],        // for TS resolution
+      "@lighthouse/shared": ["packages/shared/src"]  // optional symmetry
     }
   }
 }

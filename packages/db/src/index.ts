@@ -1,1 +1,1 @@
-export * from './knex.js';
+export { getDb, closeDb } from "./knex.js";
