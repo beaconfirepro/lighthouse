@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "echo web dev",
     "build": "echo web build",
-    "lint": "echo web lint",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx",
     "test": "echo web test"
   }
 }
