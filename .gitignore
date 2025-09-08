@@ -19,3 +19,8 @@ Thumbs.db
 
 # Databases
 *.sqlite3
+
+# Turbo cache
+.turbo/
+apps/*/.turbo
+packages/*/.turbo

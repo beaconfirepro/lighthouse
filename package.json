@@ -1,7 +1,7 @@
 {
   "name": "lighthouse",
   "private": true,
-  "packageManager": "npm@10",
+  "packageManager": "npm@11.4.2",
   "engines": {
     "node": ">=20 <21"
   },
