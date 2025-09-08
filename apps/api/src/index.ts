@@ -1,16 +1,3 @@
-import express from 'express';
-import ahj from './ahj.js';
-
-const app = express();
-app.use(express.json());
-app.use('/ahj', ahj);
-
-const port = process.env.PORT ?? 3000;
-app.listen(port, () => {
-  console.log(`API listening on port ${port}`);
-});
-
-export default app;
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import helmet from 'helmet';
@@ -20,6 +7,7 @@ import { getDb, closeDb } from '@db/knex.js';
 
 // Routers
 import ahj from './ahj.js';
+import projects from './projects.js';
 
 const app = express();
 const log = pino({ name: 'api' });
@@ -42,10 +30,11 @@ app.get('/health', async (_req: Request, res: Response) => {
 
 // Feature routes
 app.use('/ahj', ahj);
+app.use('/projects', projects);
 
 // Server
-const PORT = Number(process.env.API_PORT || 4000);
-app.listen(PORT, () => log.info(`API listening on :${PORT}`));
+const API_PORT = Number(process.env.API_PORT ?? 4000);
+app.listen(API_PORT, () => log.info(`API listening on :${API_PORT}`));
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
