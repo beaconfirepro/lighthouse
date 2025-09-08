@@ -12,6 +12,10 @@
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": ".",
-    "paths": { "@shared/*": ["packages/shared/*"] }
+    "paths": {
+      "@shared/*": ["packages/shared/*"],
+      "@db": ["packages/db/src"],
+      "@db/*": ["packages/db/src/*"]
+    }
   }
 }
