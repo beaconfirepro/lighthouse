@@ -4,6 +4,16 @@ import helmet from 'helmet';
 import cors from 'cors';
 import pino from 'pino';
 import { getDb, closeDb } from '@db/knex.js';
+import { loadSecrets } from '@shared/src/keyVault.js';
+
+await loadSecrets([
+  'API_PORT',
+  'SQL_SERVER',
+  'SQL_DB',
+  'SQL_USER',
+  'SQL_PASSWORD',
+  'SQL_ENCRYPT',
+]);
 
 // Routers
 import ahj from './ahj.js';
@@ -23,8 +33,9 @@ app.get('/health', async (_req: Request, res: Response) => {
     const db = getDb();
     await db.raw('select 1 as ok');
     res.json({ status: 'ok', service: 'api' });
-  } catch (e: any) {
-    res.status(500).json({ status: 'error', error: e?.message || 'db error' });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : 'db error';
+    res.status(500).json({ status: 'error', error: message });
   }
 });
 
