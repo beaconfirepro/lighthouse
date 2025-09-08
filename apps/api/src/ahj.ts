@@ -1,24 +1,16 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 
-// Router for AHJ endpoints
+import { getDb } from '@db/knex.js';
+
 const router = Router();
 
-router.get('/', (_req: Request, res: Response) => {
-  res.json({ status: 'ok', feature: 'ahj' });
-});
-
-
-import { getDb } from '@shared/../db/src/knex.js';
-
-const r = Router();
-
-r.get('/', async (_req, res) => {
+router.get('/', async (_req, res) => {
   const db = getDb();
   const rows = await db('dim_ahj').orderBy('name').limit(500);
   res.json(rows);
 });
 
-r.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
   const db = getDb();
   const id = await db('dim_ahj')
     .insert({
@@ -37,7 +29,7 @@ r.post('/', async (req, res) => {
   res.status(201).json({ ahj_id: id?.[0]?.ahj_id || id });
 });
 
-r.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   const db = getDb();
   await db('dim_ahj')
     .where({ ahj_id: Number(req.params.id) })
@@ -58,3 +50,4 @@ r.put('/:id', async (req, res) => {
 });
 
 export default router;
+
