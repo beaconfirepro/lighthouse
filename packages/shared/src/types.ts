@@ -21,3 +21,10 @@ export interface ProjectPhase {
 export interface ProjectDetail {
   phases?: ProjectPhase[] | null;
 }
+
+export interface Vendor {
+  vendor_id: number;
+  vendor_name: string;
+  vendor_type: string;
+  active: boolean;
+}

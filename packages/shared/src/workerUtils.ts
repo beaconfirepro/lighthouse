@@ -7,7 +7,7 @@ export async function markJobDone(
   message: unknown,
 ): Promise<void> {
 
-  const { job_id: jobId = null } = message as { job_id?: string | null };
+  const jobId = (message as { job_id?: string } | null)?.job_id ?? null;
 
   await db('outbox_job')
     .where({ job_id: jobId })
