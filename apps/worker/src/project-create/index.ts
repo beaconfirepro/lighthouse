@@ -1,3 +1,4 @@
+import '../telemetry.js';
 import { AzureFunction, Context } from '@azure/functions';
 import pino from 'pino';
 import { getDb, closeDb } from '@db/knex.js';

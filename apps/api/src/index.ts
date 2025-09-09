@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import pino from 'pino';
+import appInsights from 'applicationinsights';
 import { getDb, closeDb } from '@db/knex.js';
 import { loadSecrets } from '@shared/src/keyVault.js';
 
@@ -22,6 +23,15 @@ import projects from './projects.js';
 const app = express();
 const log = pino({ name: 'api' });
 
+const aiConn = process.env.APPLICATIONINSIGHTS_CONNECTION_STRING;
+if (aiConn) {
+  appInsights
+    .setup(aiConn)
+    .setAutoCollectConsole(true, true)
+    .start();
+}
+
+
 // Middleware
 app.use(helmet());
 app.use(cors());
@@ -34,9 +44,9 @@ app.get('/health', async (_req: Request, res: Response) => {
     await db.raw('select 1 as ok');
     res.json({ status: 'ok', service: 'api' });
   } catch (e: unknown) {
-    const message = e instanceof Error ? e.message : 'db error';
+    const err = e as Error;
+    res.status(500).json({ status: 'error', error: err.message || 'db error' });
 
-    res.status(500).json({ status: 'error', error: message });
   }
 });
 

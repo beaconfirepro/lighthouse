@@ -6,7 +6,11 @@ export async function markJobDone(
   log: Logger,
   message: unknown,
 ): Promise<void> {
+
+  const job = message as { job_id?: string | null };
+
   const jobId = (message as { job_id?: string } | null)?.job_id ?? null;
+
   await db('outbox_job')
     .where({ job_id: jobId })
     .update({ status: 'done', updated_at: db.fn.now() });
