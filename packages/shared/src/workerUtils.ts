@@ -6,6 +6,7 @@ export async function markJobDone(
   log: Logger,
   message: unknown,
 ): Promise<void> {
+
   const jobId = (message as { job_id?: string } | null)?.job_id ?? null;
 
   await db('outbox_job')
