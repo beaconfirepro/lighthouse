@@ -19,6 +19,7 @@ await loadSecrets([
 // Routers
 import ahj from './ahj.js';
 import projects from './projects.js';
+import vendors from './vendors.js';
 
 const app = express();
 const log = pino({ name: 'api' });
@@ -53,6 +54,7 @@ app.get('/health', async (_req: Request, res: Response) => {
 // Feature routes
 app.use('/ahj', ahj);
 app.use('/projects', projects);
+app.use('/vendors', vendors);
 
 // Server
 const API_PORT = Number(process.env.API_PORT ?? 4000);

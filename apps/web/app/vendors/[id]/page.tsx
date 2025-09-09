@@ -1,11 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-
-interface Vendor {
-  vendor_name?: string;
-  vendor_type?: string;
-  active?: boolean;
-}
+import type { Vendor } from '@shared';
 
 export default function VendorDetail({ params }: { params: { id: string } }) {
   const id = Number(params.id);
