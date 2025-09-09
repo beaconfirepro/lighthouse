@@ -8,5 +8,9 @@
     "build": "echo shared build",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx",
     "test": "echo shared test"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.11.1",
+    "@azure/keyvault-secrets": "^4.10.0"
   }
 }
