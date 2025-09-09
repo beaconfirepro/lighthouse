@@ -35,6 +35,7 @@ app.get('/health', async (_req: Request, res: Response) => {
     res.json({ status: 'ok', service: 'api' });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'db error';
+
     res.status(500).json({ status: 'error', error: message });
   }
 });
