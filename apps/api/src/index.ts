@@ -5,6 +5,16 @@ import cors from 'cors';
 import pino from 'pino';
 import appInsights from 'applicationinsights';
 import { getDb, closeDb } from '@db/knex.js';
+import { loadSecrets } from '@shared/src/keyVault.js';
+
+await loadSecrets([
+  'API_PORT',
+  'SQL_SERVER',
+  'SQL_DB',
+  'SQL_USER',
+  'SQL_PASSWORD',
+  'SQL_ENCRYPT',
+]);
 
 // Routers
 import ahj from './ahj.js';
@@ -36,6 +46,7 @@ app.get('/health', async (_req: Request, res: Response) => {
   } catch (e: unknown) {
     const err = e as Error;
     res.status(500).json({ status: 'error', error: err.message || 'db error' });
+
   }
 });
 
