@@ -2,10 +2,20 @@
   "name": "@lighthouse/web",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "npm@11.4.2",
   "scripts": {
-    "dev": "echo web dev",
-    "build": "echo web build",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx",
-    "test": "echo web test"
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "next": "^15.5.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.13",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9"
   }
 }

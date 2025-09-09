@@ -2,16 +2,19 @@
 import { useEffect, useState } from 'react';
 import type { ProjectDetail } from '@shared';
 
-interface PageProps {
-  params: { id: string };
-}
-
-export default function ProjectDetail({ params }: PageProps) {
-  const id = Number(params.id);
+export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
+  const [id, setId] = useState<number | null>(null);
   const [data, setData] = useState<ProjectDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    params
+      .then((p) => setId(Number(p.id)))
+      .catch(() => setError('Failed to load project'));
+  }, [params]);
+
+  useEffect(() => {
+    if (id === null) return;
     async function load() {
       try {
         const res = await fetch(`/projects/${id}/overview`);
@@ -27,7 +30,7 @@ export default function ProjectDetail({ params }: PageProps) {
   }, [id]);
 
   if (error) return <div className="p-6">{error}</div>;
-  if (!data) return <div className="p-6">Loading…</div>;
+  if (id === null || !data) return <div className="p-6">Loading…</div>;
 
   return (
     <main className="max-w-5xl mx-auto p-6">

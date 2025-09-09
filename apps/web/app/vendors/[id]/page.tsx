@@ -1,17 +1,37 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 
-export default function VendorDetail({ params }: any) {
-  const id = Number(params.id);
-  const [data, setData] = useState<any>(null);
+interface Vendor {
+  vendor_name: string;
+  vendor_type: string;
+  active: boolean;
+}
+
+export default function VendorDetail({ params }: { params: Promise<{ id: string }> }) {
+  const [id, setId] = useState<number | null>(null);
+  const [data, setData] = useState<Vendor | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
+    params
+      .then((p) => setId(Number(p.id)))
+      .catch(() => setError('Failed to load vendor'));
+  }, [params]);
+
+  useEffect(() => {
+    if (id === null) return;
     fetch(`/vendors/${id}`)
       .then((r) => r.json())
-      .then(setData);
+      .then(setData)
+      .catch(() => setError('Failed to load vendor'));
   }, [id]);
-  if (!data) return <div className="p-6">Loading…</div>;
-  async function save(e: any) {
+
+  if (error) return <div className="p-6">{error}</div>;
+  if (id === null || !data) return <div className="p-6">Loading…</div>;
+
+  async function save(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!data) return;
     await fetch(`/vendors/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -23,10 +43,12 @@ export default function VendorDetail({ params }: any) {
     });
     alert('Saved');
   }
+
   async function pushQBO() {
     await fetch(`/vendors/${id}/push/qbo`, { method: 'POST' });
     alert('Queued');
   }
+
   return (
     <main className="max-w-3xl mx-auto p-6 space-y-4">
       <h1 className="text-xl font-semibold">Vendor #{id}</h1>
