@@ -17,7 +17,7 @@ const serviceBusTrigger: AzureFunction = async function (
   const db = getDb();
   try {
     await markJobDone(db, log, message);
-  } catch (e) {
+  } catch (e: unknown) {
     log.error(e);
   } finally {
     await closeDb();
