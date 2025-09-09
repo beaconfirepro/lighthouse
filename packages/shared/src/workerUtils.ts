@@ -1,13 +1,16 @@
 import type { Knex } from 'knex';
 import type { Logger } from 'pino';
 
+interface OutboxMessage {
+  job_id?: string;
+}
+
 export async function markJobDone(
   db: Knex,
   log: Logger,
-  message: unknown,
+  message: OutboxMessage | null,
 ): Promise<void> {
-
-  const jobId = (message as { job_id?: string } | null)?.job_id ?? null;
+  const jobId = message?.job_id ?? null;
 
   await db('outbox_job')
     .where({ job_id: jobId })
