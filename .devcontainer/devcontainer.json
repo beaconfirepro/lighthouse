@@ -1,15 +1,17 @@
 {
-  // Codespaces configuration for the lighthouse monorepo
-  "name": "lighthouse",
-  // Build from Dockerfile to enable corepack
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  // Install Docker-in-Docker feature
+  "name": "Beacon Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "pnpm": "true",
+      "yarn": "true"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true
+    }
   },
-  // Pre-install common VS Code extensions
+  "postCreateCommand": "corepack enable && (test -f pnpm-lock.yaml && pnpm install || npm ci || true)",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -20,15 +22,11 @@
       ]
     }
   },
-  // Forward frequently used ports and label them
   "forwardPorts": [3000, 5173, 9229],
   "portsAttributes": {
-    "3000": { "label": "web" },
-    "5173": { "label": "vite" },
-    "9229": { "label": "node-debug" }
+    "3000": { "label": "Web App" },
+    "5173": { "label": "Vite" },
+    "9229": { "label": "Node Debug" }
   },
-  // Install dependencies and seed the database after container creation
-  "postCreateCommand": "bash -c 'if [ -f pnpm-lock.yaml ]; then pnpm install; else npm ci; fi && npm run db:seed'",
-  // Use non-root node user inside the container
-  "remoteUser": "node"
+  "remoteUser": "vscode"
 }
