@@ -1,0 +1,34 @@
+{
+  // Codespaces configuration for the lighthouse monorepo
+  "name": "lighthouse",
+  // Build from Dockerfile to enable corepack
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  // Install Docker-in-Docker feature
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  // Pre-install common VS Code extensions
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  },
+  // Forward frequently used ports and label them
+  "forwardPorts": [3000, 5173, 9229],
+  "portsAttributes": {
+    "3000": { "label": "web" },
+    "5173": { "label": "vite" },
+    "9229": { "label": "node-debug" }
+  },
+  // Install dependencies and seed the database after container creation
+  "postCreateCommand": "bash -c 'if [ -f pnpm-lock.yaml ]; then pnpm install; else npm ci; fi && npm run db:seed'",
+  // Use non-root node user inside the container
+  "remoteUser": "node"
+}
