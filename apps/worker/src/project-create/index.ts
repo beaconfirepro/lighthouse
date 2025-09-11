@@ -1,5 +1,5 @@
 import '../telemetry';
-import { AzureFunction, Context } from '@azure/functions';
+import { Context } from '@azure/functions';
 import pino from 'pino';
 import { getDb, closeDb } from '@lighthouse/db';
 import { loadSecrets } from '@shared/keyVault';

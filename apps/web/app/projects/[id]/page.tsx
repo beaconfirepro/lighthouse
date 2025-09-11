@@ -1,33 +1,27 @@
-'use client';
-import { useEffect, useState } from 'react';
+// Server component version (no "use client")
 import type { ProjectDetail } from '@shared';
 
-interface PageProps {
-  params: { id: string };
-}
+type PageProps = { params: Promise<{ id: string }> };
 
-export default function ProjectDetail({ params }: PageProps) {
-  const id = Number(params.id);
-  const [data, setData] = useState<ProjectDetail | null>(null);
-  const [error, setError] = useState<string | null>(null);
+export default async function ProjectDetailPage({ params }: PageProps) {
+  const { id } = await params;
 
-  useEffect(() => {
-    async function load() {
-      try {
-        const res = await fetch(`/projects/${id}/overview`);
-        if (!res.ok) throw new Error('Failed to fetch project');
-        const json: ProjectDetail = await res.json();
-        setData(json);
-      } catch (err) {
-        setError('Failed to load project');
-        console.error(err);
-      }
+  // Fetch on the server. No caching so you always get fresh data.
+  let data: ProjectDetail | null = null;
+  try {
+    const res = await fetch(`/projects/${id}/overview`, { cache: 'no-store' });
+    if (!res.ok) {
+      return <div className="p-6">Failed to fetch project</div>;
     }
-    load();
-  }, [id]);
+    data = (await res.json()) as ProjectDetail;
+  } catch (err) {
+    console.error(err);
+    return <div className="p-6">Failed to load project</div>;
+  }
 
-  if (error) return <div className="p-6">{error}</div>;
-  if (!data) return <div className="p-6">Loading…</div>;
+  if (!data) {
+    return <div className="p-6">No project found</div>;
+  }
 
   return (
     <main className="max-w-5xl mx-auto p-6">
