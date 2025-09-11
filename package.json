@@ -37,5 +37,11 @@
     "https-proxy-agent": "^7.0.6",
     "jsonwebtoken": "^9.0.2",
     "uuid": "^8.3.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "colorette": "2.0.20",
+      "@azure/functions": "3.5.1"
+    }
   }
 }

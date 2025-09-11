@@ -9,7 +9,7 @@
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx"
   },
   "dependencies": {
-    "@azure/functions": "^4.4.0",
+    "@azure/functions": "3.5.1",
     "@azure/service-bus": "^7.9.5",
     "dotenv": "^16.4.5",
     "knex": "^3.1.0",
