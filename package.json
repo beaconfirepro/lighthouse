@@ -19,7 +19,8 @@
     "verify:env": "node scripts/verify_env.mjs",
     "db:migrate": "npm --prefix packages/db run db:migrate",
     "db:rollback": "npm --prefix packages/db run db:rollback",
-    "db:seed": "npm --prefix packages/db run db:seed"
+    "db:seed": "npm --prefix packages/db run db:seed",
+    "start:api": "npm run start -w @lighthouse/api"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.42.0",
