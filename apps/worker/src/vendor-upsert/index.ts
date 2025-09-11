@@ -1,5 +1,5 @@
 import '../telemetry';
-import type { InvocationContext } from '@azure/functions';
+import { AzureFunction, Context } from '@azure/functions';
 import pino from 'pino';
 import { getDb, closeDb } from '@lighthouse/db';
 import { loadSecrets } from '@shared/keyVault';
@@ -10,7 +10,7 @@ await loadSecrets(['SQL_SERVER', 'SQL_DB', 'SQL_USER', 'SQL_PASSWORD', 'SQL_ENCR
 const log = pino({ name: 'vendor-upsert' });
 
 const serviceBusTrigger = async function (
-  _context: InvocationContext,
+  _context: Context,
   message: OutboxMessage | null,
 ): Promise<void> {
   log.info({ message }, 'received');
