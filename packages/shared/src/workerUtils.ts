@@ -1,7 +1,7 @@
 import type { Knex } from 'knex';
 import type { Logger } from 'pino';
 
-interface OutboxMessage {
+export interface OutboxMessage {
   job_id?: string;
 }
 

@@ -9,9 +9,9 @@ await loadSecrets(['SQL_SERVER', 'SQL_DB', 'SQL_USER', 'SQL_PASSWORD', 'SQL_ENCR
 
 const log = pino({ name: 'vendor-upsert' });
 
-const serviceBusTrigger: AzureFunction = async function (
-  context: Context,
-  message: unknown,
+const serviceBusTrigger = async function (
+  _context: unknown,
+  message: OutboxMessage | null,
 ): Promise<void> {
   log.info({ message }, 'received');
   const db = getDb();

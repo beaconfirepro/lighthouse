@@ -22,3 +22,7 @@ Thumbs.db
 .turbo/
 apps/*/.turbo
 packages/*/.turbo
+
+# Database
+*.sqlite
+*.sqlite3
