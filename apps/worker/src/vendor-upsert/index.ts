@@ -1,9 +1,9 @@
-import '../telemetry.js';
+import '../telemetry';
 import { AzureFunction, Context } from '@azure/functions';
 import pino from 'pino';
-import { getDb, closeDb } from '@db/knex.js';
-import { markJobDone } from '@shared/src/workerUtils.js';
-import { loadSecrets } from '@shared/src/keyVault.js';
+import { getDb, closeDb } from '@lighthouse/db';
+import { markJobDone } from '@shared/workerUtils';
+import { loadSecrets } from '@shared/keyVault';
 
 await loadSecrets(['SQL_SERVER', 'SQL_DB', 'SQL_USER', 'SQL_PASSWORD', 'SQL_ENCRYPT']);
 

@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { getDb } from '@db/knex.js';
+import { getDb } from '@lighthouse/db';
 
 const projects = Router();
 

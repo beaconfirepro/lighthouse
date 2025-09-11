@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { getDb } from '@db/knex.js';
-import type { Vendor } from '@shared/src/types.js';
+import { getDb } from '@lighthouse/db';
+import type { Vendor } from '@shared/types';
 
 const vendors = Router();
 
