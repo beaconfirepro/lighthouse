@@ -1,17 +1,16 @@
-import '../telemetry.js';
-import { AzureFunction, Context } from '@azure/functions';
+import '../telemetry';
 import pino from 'pino';
-import { getDb, closeDb } from '@db/knex.js';
-import { markJobDone } from '@shared/src/workerUtils.js';
-import { loadSecrets } from '@shared/src/keyVault.js';
+import { getDb, closeDb } from '@lighthouse/db';
+import { markJobDone, type OutboxMessage } from '@shared/workerUtils';
+import { loadSecrets } from '@shared/keyVault';
 
 await loadSecrets(['SQL_SERVER', 'SQL_DB', 'SQL_USER', 'SQL_PASSWORD', 'SQL_ENCRYPT']);
 
 const log = pino({ name: 'vendor-upsert' });
 
-const serviceBusTrigger: AzureFunction = async function (
-  context: Context,
-  message: unknown,
+const serviceBusTrigger = async function (
+  _context: unknown,
+  message: OutboxMessage | null,
 ): Promise<void> {
   log.info({ message }, 'received');
   const db = getDb();

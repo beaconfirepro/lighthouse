@@ -1,18 +1,18 @@
 import { Router } from 'express';
 
-import { getDb } from '@db/knex.js';
+import { getDb } from '@lighthouse/db';
 
 const router = Router();
 
 router.get('/', async (_req, res) => {
   const db = getDb();
-  const rows = await db('dim_ahj').orderBy('name').limit(500);
+  const rows = await db('ahj').orderBy('name').limit(500);
   res.json(rows);
 });
 
 router.post('/', async (req, res) => {
   const db = getDb();
-  const id = await db('dim_ahj')
+  const id = await db('ahj')
     .insert({
       name: req.body?.name,
       jurisdiction: req.body?.jurisdiction ?? null,
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   const db = getDb();
-  await db('dim_ahj')
+  await db('ahj')
     .where({ ahj_id: Number(req.params.id) })
     .update({
       name: req.body?.name,
@@ -50,4 +50,3 @@ router.put('/:id', async (req, res) => {
 });
 
 export default router;
-

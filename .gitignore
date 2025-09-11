@@ -10,7 +10,9 @@ dist
 coverage
 
 # Env
-
+.env
+.env.*
+!.env.example
 
 # OS
 .DS_Store
@@ -20,3 +22,7 @@ Thumbs.db
 .turbo/
 apps/*/.turbo
 packages/*/.turbo
+
+# Database
+*.sqlite
+*.sqlite3
