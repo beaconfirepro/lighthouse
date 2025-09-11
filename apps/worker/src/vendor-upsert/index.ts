@@ -7,7 +7,7 @@ const log = pino({ name: 'vendor-upsert' });
 
 const serviceBusTrigger: AzureFunction = async function (
   context: Context,
-  message: any,
+  message: unknown,
 ): Promise<void> {
   log.info({ message }, 'received');
   const db = getDb();
