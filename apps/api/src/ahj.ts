@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { getDb } from '@db/knex.js';
+import { getDb } from '@lighthouse/db';
 
 const router = Router();
 

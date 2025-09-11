@@ -4,15 +4,17 @@ import helmet from 'helmet';
 import cors from 'cors';
 import pino from 'pino';
 import appInsights from 'applicationinsights';
-import { getDb, closeDb } from '@db/knex.js';
-import { loadSecrets } from '@shared/src/keyVault.js';
+import { getDb, closeDb } from '@lighthouse/db';
+import { loadSecrets } from '@shared/keyVault';
 
 await loadSecrets(['API_PORT', 'SQL_SERVER', 'SQL_DB', 'SQL_USER', 'SQL_PASSWORD', 'SQL_ENCRYPT']);
 
 // Routers
-import ahj from './ahj.js';
-import projects from './projects.js';
-import vendors from './vendors.js';
+import ahj from './ahj';
+import projects from './projects';
+import vendors from './vendors';
+import apRun from './apRun';
+import collectionsRun from './collectionsRun';
 
 const app = express();
 const log = pino({ name: 'api' });
@@ -43,6 +45,8 @@ app.get('/health', async (_req: Request, res: Response) => {
 app.use('/ahj', ahj);
 app.use('/projects', projects);
 app.use('/vendors', vendors);
+app.use('/ap/run', apRun);
+app.use('/collections/run', collectionsRun);
 
 // Server
 const API_PORT: number = Number(process.env.API_PORT ?? 4000);

@@ -13,9 +13,9 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["packages/shared/*"],
-      "@db": ["packages/db/src"],
-      "@db/*": ["packages/db/src/*"]
+      "@shared": ["packages/shared/src/index.ts"],
+      "@shared/*": ["packages/shared/src/*"],
+      "@lighthouse/db": ["packages/db/src/index.ts"]
     }
   }
 }

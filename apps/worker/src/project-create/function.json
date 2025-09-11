@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "direction": "in",
+      "type": "serviceBusTrigger",
+      "name": "message",
+      "queueName": "%SB_QUEUE_PROJECT_CREATE%",
+      "connection": "SB_CONNECTION_STRING"
+    }
+  ],
+  "scriptFile": "../../dist/project-create/index.js"
+}
