@@ -3,15 +3,15 @@ import { AzureFunction, Context } from '@azure/functions';
 import pino from 'pino';
 import { getDb, closeDb } from '@lighthouse/db';
 import { markJobDone } from '@shared/workerUtils';
-import { loadSecrets } from '@shared/keyVault';
 
-await loadSecrets(['SQL_SERVER', 'SQL_DB', 'SQL_USER', 'SQL_PASSWORD', 'SQL_ENCRYPT']);
+// Same minimal local type
+type OutboxMessage = { id?: string; jobType?: string; payload?: unknown } | null;
 
 const log = pino({ name: 'vendor-upsert' });
 
-const serviceBusTrigger = async function (
-  _context: unknown,
-  message: OutboxMessage | null,
+const serviceBusTrigger: AzureFunction = async function (
+  _context: Context,
+  message: OutboxMessage, // type it here
 ): Promise<void> {
   log.info({ message }, 'received');
   const db = getDb();
