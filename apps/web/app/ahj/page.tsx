@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, type FormEvent } from 'react';
-import type { AHJ } from '@shared';
+import type { AHJ } from '@lighthouse/shared';
 
 export default function AHJ() {
   const [rows, setRows] = useState<AHJ[]>([]);
