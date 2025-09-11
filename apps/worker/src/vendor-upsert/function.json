@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "direction": "in",
+      "type": "serviceBusTrigger",
+      "name": "message",
+      "queueName": "%SB_QUEUE_VENDOR_UPSERT%",
+      "connection": "SB_CONNECTION_STRING"
+    }
+  ],
+  "scriptFile": "../../dist/vendor-upsert/index.js"
+}
